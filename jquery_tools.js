@@ -52,15 +52,16 @@ Array.prototype.remove = function(val) {
 
 /**
  * [getParams 获取链接参数值]
- * @author sungang 2018-04-12
- * @param key [查找键]
- * @return value
+ * @param key [键]
+ * @return value [值]
  */
 String.prototype.getParams = function(key) {
-    var reg = eval('/[\?|\&]' + key + '\=[0-9a-zA-Z]*/');
+    // var reg = eval('/[\?|\&]' + key + '\=[0-9a-zA-Z]*/');
+    var reg = new RegExp('[\?|\&]' + key + '\=[\_0-9a-zA-Z]*');
     var result = this.match(reg);
     if (result) {
-        var value = result[0].replace(eval('/[\?|\&]' + key + '\=/'), '');
+        // var value = result[0].replace(eval('/[\?|\&]' + key + '\=/'), '');
+        var value = result[0].replace(new RegExp('[\?|\&]' + key + '\='), '')
         return value ? value : null;
     }
     return null;

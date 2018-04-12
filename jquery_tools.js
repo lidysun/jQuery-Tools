@@ -24,6 +24,23 @@ $.fn.placeholder = function() {
 };
 
 /**
+ * [filter 数组筛选]
+ * @param  {Function} fn [筛选条件函数]
+ * @return {[Array]}     [返回符合条件的新元素数组，原数组不变]
+ */
+Array.prototype.filter = function(fn) {
+    var newArray = [];
+    var length = this.length;
+    var i = 0;
+    for (; i < length; i++) {
+        if (fn(this[i])) {
+            newArray.push(this[i])
+        }
+    }
+    return newArray;
+};
+
+/**
  * [indexOf 数组查找某元素]
  * @param val [要查找的元素]
  * @return [元素索引位置]

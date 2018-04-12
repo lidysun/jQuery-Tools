@@ -1,4 +1,23 @@
 /**
+ * [cookie 设置或取cookie]
+ * @param  name    [键]
+ * @param  value   [值]
+ * @param  expires [有效期]
+ * @return value   [值]
+ */
+$.cookie = function(name, value, expires) {
+    if (value != undefined) {
+        var duration = new Date();
+        duration.setDate(duration.getDate() + expires);
+        document.cookie = name + '=' + encodeURIComponent(value) + ';path=/' + (expires ? ';expires=' + duration.toGMTString() : '');
+        return value;
+    } else {
+        var arr = document.cookie.match(new RegExp('(^| )' + name + '=([^;]*)(;|$)'));
+        return arr != null ? decodeURIComponent(arr[2]) : '';
+    }
+};
+
+/**
  * [placeholder 低版本浏览器placoholder兼容方法]
  * @return {[object]} [元素对象]
  */
@@ -83,7 +102,6 @@ Array.prototype.remove = function(val) {
 //     }
 //     return null;
 // };
-
 String.prototype.getParams = function(key) {
     var reg = new RegExp('[\?|\&]' + key + '\=([^\&]*)');
     var result = this.match(reg);

@@ -49,3 +49,19 @@ Array.prototype.remove = function(val) {
         this.remove(val);
     }
 };
+
+/**
+ * [getParams 获取链接参数值]
+ * @author sungang 2018-04-12
+ * @param key [查找键]
+ * @return value
+ */
+String.prototype.getParams = function(key) {
+    var reg = eval('/[\?|\&]' + key + '\=[0-9a-zA-Z]*/');
+    var result = this.match(reg);
+    if (result) {
+        var value = result[0].replace(eval('/[\?|\&]' + key + '\=/'), '');
+        return value ? value : null;
+    }
+    return null;
+};

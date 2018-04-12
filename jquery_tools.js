@@ -61,7 +61,7 @@ String.prototype.getParams = function(key) {
     var result = this.match(reg);
     if (result) {
         // var value = result[0].replace(eval('/[\?|\&]' + key + '\=/'), '');
-        var value = result[0].replace(new RegExp('[\?|\&]' + key + '\='), '')
+        var value = result[0].replace(new RegExp('[\?|\&]' + key + '\='), '');
         return value ? value : null;
     }
     return null;

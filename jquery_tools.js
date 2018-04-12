@@ -72,14 +72,20 @@ Array.prototype.remove = function(val) {
  * @param key [键]
  * @return value [值]
  */
+// String.prototype.getParams = function(key) {
+//     // var reg = eval('/[\?|\&]' + key + '\=[0-9a-zA-Z]*/');
+//     var reg = new RegExp('[\?|\&]' + key + '\=[\_0-9a-zA-Z]*');
+//     var result = this.match(reg);
+//     if (result) {
+//         // var value = result[0].replace(eval('/[\?|\&]' + key + '\=/'), '');
+//         var value = result[0].replace(new RegExp('[\?|\&]' + key + '\='), '');
+//         return value ? value : null;
+//     }
+//     return null;
+// };
+
 String.prototype.getParams = function(key) {
-    // var reg = eval('/[\?|\&]' + key + '\=[0-9a-zA-Z]*/');
-    var reg = new RegExp('[\?|\&]' + key + '\=[\_0-9a-zA-Z]*');
+    var reg = new RegExp('[\?|\&]' + key + '\=([^\&]*)');
     var result = this.match(reg);
-    if (result) {
-        // var value = result[0].replace(eval('/[\?|\&]' + key + '\=/'), '');
-        var value = result[0].replace(new RegExp('[\?|\&]' + key + '\='), '');
-        return value ? value : null;
-    }
-    return null;
+    return result && result[1] ? decodeURIComponent(result[1]) : null;
 };

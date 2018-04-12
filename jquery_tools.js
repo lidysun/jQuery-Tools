@@ -34,7 +34,7 @@ Array.prototype.filter = function(fn) {
     var i = 0;
     for (; i < length; i++) {
         if (fn(this[i])) {
-            newArray.push(this[i])
+            newArray.push(this[i]);
         }
     }
     return newArray;
